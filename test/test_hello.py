@@ -5,10 +5,12 @@ import unittest
 import os.path
 
 class BashFunctionCaller(object):
+    '''utilitary class to show some cool magic you can do in python'''
     def __init__(self, script):
         self.script = script
         
     def __getattr__(self, name):
+        '''allows to do caller.FUNC_NAME(ARGS)'''
         def call_fun(*args):
             script_path = fn = "'{}'".format(os.path.join(os.path.dirname(__file__), self.script))
             return subprocess.check_output(
