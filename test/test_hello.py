@@ -12,7 +12,7 @@ class BashFunctionCaller(object):
     def __getattr__(self, name):
         '''allows to do caller.FUNC_NAME(ARGS)'''
         def call_fun(*args):
-            script_path = fn = "'{}'".format(os.path.join(os.path.dirname(__file__), self.script))
+            script_path = "'{}'".format(os.path.join(os.path.dirname(__file__), self.script))
             return subprocess.check_output(
                     ['bash', '-c', 'source {} && {} {}'.format(script_path, name, " ".join(args))],
                     universal_newlines=True)
